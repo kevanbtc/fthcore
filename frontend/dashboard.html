@@ -39,6 +39,17 @@
         .header p {
             font-size: 1.2rem;
             opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .network-status {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .dashboard {
@@ -208,7 +219,11 @@
     <div class="container">
         <div class="header">
             <h1>🏆 FTH Core Dashboard</h1>
-            <p>Gold-Backed Cryptocurrency Ecosystem</p>
+            <p>Institutional-Grade Gold-Backed Cryptocurrency Ecosystem</p>
+            <div class="network-status">
+                <span class="status-indicator status-good"></span>
+                <span>Mainnet | Block: <span id="blockNumber">18,950,123</span></span>
+            </div>
         </div>
 
         <div id="connectWallet" class="connect-wallet">
@@ -284,20 +299,69 @@
                     </div>
                 </div>
 
+                <!-- Proof of Reserves -->
+                <div class="card">
+                    <h3>🔍 Proof of Reserves</h3>
+                    <div class="metric">
+                        <span class="metric-label">Physical Gold (Vault)</span>
+                        <span class="metric-value" id="physicalGold">3,137,500 grams</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Vault Location</span>
+                        <span class="metric-value">Brink's Dubai (DMCC)</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Last Audit</span>
+                        <span class="metric-value" id="lastAudit">2024-01-15</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Chainlink PoR</span>
+                        <span class="metric-value">
+                            <span style="color: #4CAF50;">✓ Verified</span>
+                            <span class="status-indicator status-good"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Market Data -->
+                <div class="card">
+                    <h3>📈 Market Analytics</h3>
+                    <div class="metric">
+                        <span class="metric-label">24h Volume</span>
+                        <span class="metric-value" id="volume24h">$2,450,000</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Market Cap</span>
+                        <span class="metric-value" id="marketCap">$150M</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Price Change (24h)</span>
+                        <span class="metric-value" style="color: #4CAF50;">+1.2%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Liquidity</span>
+                        <span class="metric-value" id="liquidity">$5.2M</span>
+                    </div>
+                </div>
+
                 <!-- Governance -->
                 <div class="card">
                     <h3>🗳️ Governance</h3>
                     <div class="metric">
                         <span class="metric-label">Voting Power</span>
-                        <span class="metric-value" id="votingPower">0 FTHC</span>
+                        <span class="metric-value" id="votingPower">8,250.75 FTHC</span>
                     </div>
                     <div class="metric">
                         <span class="metric-label">Active Proposals</span>
-                        <span class="metric-value" id="activeProposals">0</span>
+                        <span class="metric-value" id="activeProposals">3</span>
                     </div>
                     <div class="metric">
                         <span class="metric-label">Participation Rate</span>
-                        <span class="metric-value" id="participationRate">0%</span>
+                        <span class="metric-value" id="participationRate">85%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Next Vote</span>
+                        <span class="metric-value">Oracle Upgrade</span>
                     </div>
                 </div>
             </div>
@@ -345,18 +409,35 @@
                     <button class="btn" onclick="showAlert('Demo: Rewards claimed successfully!', 'success')">Claim Rewards</button>
                 </div>
 
-                <!-- Unstake Tokens -->
+                <!-- Governance Voting -->
                 <div class="action-card">
-                    <h3>📤 Unstake Tokens</h3>
-                    <div class="form-group">
-                        <label for="unstakeAmount">Amount to Unstake (FTHC)</label>
-                        <input type="number" id="unstakeAmount" placeholder="0.00" step="0.01">
+                    <h3>🗳️ Vote on Proposal</h3>
+                    <div class="metric">
+                        <span class="metric-label">Active Proposal</span>
+                        <span class="metric-value">Oracle Provider Update</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-label">Lock Expires</span>
-                        <span class="metric-value" id="lockExpiry">Available Now</span>
+                        <span class="metric-label">Voting Deadline</span>
+                        <span class="metric-value">3 days remaining</span>
                     </div>
-                    <button class="btn" onclick="showAlert('Demo: Unstaking functionality would execute here', 'success')">Unstake</button>
+                    <div style="display: flex; gap: 10px; margin-top: 15px;">
+                        <button class="btn" style="background: #4CAF50;" onclick="showAlert('Demo: Voted FOR proposal', 'success')">Vote FOR</button>
+                        <button class="btn" style="background: #F44336;" onclick="showAlert('Demo: Voted AGAINST proposal', 'success')">Vote AGAINST</button>
+                    </div>
+                </div>
+
+                <!-- Proof of Reserves -->
+                <div class="action-card">
+                    <h3>🔍 Verify Reserves</h3>
+                    <div class="metric">
+                        <span class="metric-label">Last Verification</span>
+                        <span class="metric-value">2 hours ago</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Oracle Status</span>
+                        <span class="metric-value" style="color: #4CAF50;">✓ All Active</span>
+                    </div>
+                    <button class="btn" onclick="showAlert('Demo: Proof of Reserves verified via Chainlink', 'success')">Verify Now</button>
                 </div>
             </div>
         </div>
